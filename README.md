@@ -444,6 +444,14 @@ console.log("First 6 exercises:", randomWorkout.map(e => e.name));
 
 ---
 
+## Verify SQL exports
+
+With Node.js 24 or newer, run `node --test test/sql-export.test.mjs`. The tests
+exercise both HTML export paths, check all four SQL dialects for every instruction
+language, and round-trip the full dataset through an in-memory SQLite database.
+
+---
+
 ## 📄 License & Use
 
 This repository is a **developer setup wizard and structured exercise dataset** — exercise metadata, multilingual instruction translations, and 180×180 exercise media.

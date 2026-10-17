@@ -1681,6 +1681,7 @@
   instructions_hi   NVARCHAR(MAX),
   instructions_pl   NVARCHAR(MAX),
   instructions_ko   NVARCHAR(MAX),
+  instructions_fr   NVARCHAR(MAX),
   muscle_group      NVARCHAR(100),
   secondary_muscles NVARCHAR(MAX),  -- JSON array stored as string
   target            NVARCHAR(100),
@@ -1703,6 +1704,7 @@
   instructions_hi   TEXT,
   instructions_pl   TEXT,
   instructions_ko   TEXT,
+  instructions_fr   TEXT,
   muscle_group      VARCHAR(100),
   secondary_muscles JSONB,
   target            VARCHAR(100),
@@ -1725,6 +1727,7 @@
   instructions_hi   TEXT,
   instructions_pl   TEXT,
   instructions_ko   TEXT,
+  instructions_fr   TEXT,
   muscle_group      VARCHAR(100),
   secondary_muscles JSON,
   target            VARCHAR(100),
@@ -1747,6 +1750,7 @@
   instructions_hi   TEXT,
   instructions_pl   TEXT,
   instructions_ko   TEXT,
+  instructions_fr   TEXT,
   muscle_group      TEXT,
   secondary_muscles TEXT,  -- JSON array stored as string
   target            TEXT,
@@ -1817,6 +1821,7 @@
       const instrHi = ex.instructions && ex.instructions.hi ? ex.instructions.hi : '';
       const instrPl = ex.instructions && ex.instructions.pl ? ex.instructions.pl : '';
       const instrKo = ex.instructions && ex.instructions.ko ? ex.instructions.ko : '';
+      const instrFr = ex.instructions && ex.instructions.fr ? ex.instructions.fr : '';
 
       const vals = [
         escStr(ex.id, db),
@@ -1833,6 +1838,7 @@
         escStr(instrHi, db),
         escStr(instrPl, db),
         escStr(instrKo, db),
+        escStr(instrFr, db),
         escStr(ex.muscle_group, db),
         escStr(muscles, db),
         escStr(ex.target, db),
@@ -1841,7 +1847,7 @@
         escStr(ex.created_at, db),
       ].join(', ');
 
-      lines.push(`INSERT INTO exercises (id, name, category, body_part, equipment, instructions_en, instructions_es, instructions_it, instructions_tr, instructions_ru, instructions_zh, instructions_hi, instructions_pl, instructions_ko, muscle_group, secondary_muscles, target, image, gif_url, created_at) VALUES (${vals});`);
+      lines.push(`INSERT INTO exercises (id, name, category, body_part, equipment, instructions_en, instructions_es, instructions_it, instructions_tr, instructions_ru, instructions_zh, instructions_hi, instructions_pl, instructions_ko, instructions_fr, muscle_group, secondary_muscles, target, image, gif_url, created_at) VALUES (${vals});`);
 
       // Batch commits every 50 rows for MSSQL compatibility
       if (db === 'mssql' && (i + 1) % 50 === 0 && i + 1 < exercises.length) {
