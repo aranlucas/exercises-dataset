@@ -78,7 +78,19 @@ Each exercise entry contains:
 
 ## 🖥️ Interactive Browser & Developer Setup
 
-This repository includes two ready-to-use HTML tools — no server required, just open in a browser.
+The exercise browser (`index.html`) embeds its data and can be opened directly.
+The developer guide (`setup.html`) fetches `data/exercises.json` when generating
+SQL, so serve the repository over HTTP for that workflow:
+
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
+```
+
+Run this command from the repository root, then open
+<http://127.0.0.1:8000/setup.html>. Stop the server with Ctrl+C. Opening the guide
+through a `file://` URL can display the page, but browsers block the JSON fetch
+used by **Generate INSERT SQL**. The guide creates SQL and API examples; it does
+not create a database or start a backend API.
 
 > **Note:** the browser displays each exercise's 180×180 thumbnail and animation GIF alongside its metadata and instructions.
 
